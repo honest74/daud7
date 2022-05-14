@@ -1,0 +1,332 @@
+Free Online Tool to Join Unlimited Programming Whatsapp Groups Visit Tool
+Skip to content
+
+Coding Shiksha
+Home
+Youtube Channel
+Online Store
+Join Whatsapp Groups
+Online Tools
+Image Converter
+File Sharing & Transfer Tool
+Donate Us
+Sitemap
+Privacy Policy
+Build a Mountain Motocross Madness Bike Riding Game in Browser Using HTML5 CSS3 and Javascript Full Project For Beginners
+You are currently viewing Build a Mountain Motocross Madness Bike Riding Game in Browser Using HTML5 CSS3 and Javascript Full Project For Beginners
+Post author:admin
+Post published:April 3, 2021
+Post category:javascript
+Post comments:0 Comments
+FacebookTwitterEmailPinterestRedditLinkedInWhatsAppGmailShare
+ 
+
+Welcome folks today in this blog post we will be building a mountain motocross madness bike riding game in browser using html5 css3 and javascript.All the full source code of the application is given below.
+
+ 
+
+ 
+
+ 
+
+Get Started
+ 
+
+ 
+
+ 
+
+In order to get started you need to make an index.html file and copy paste the following code
+
+ 
+
+ 
+
+index.html`
+
+ 
+
+ 
+
+Sponsored Content
+Online Data Entry Job in USA from  Somalia. Salaries Might surprise you
+Online Data Entry Job in USA from Somalia. Salaries Might surprise you
+USA Job from Home | Search Ads
+If you'd rule Somalia... This game simulates geopolitical conflicts
+If you'd rule Somalia... This game simulates geopolitical conflicts
+Conflict of Nations
+Apartments For Sale in Dubai Might Surprise You
+Apartments For Sale in Dubai Might Surprise You
+realestatesausweb.com
+Recommended by
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Motocross game</title>
+  <style>
+    body{
+  margin: 0;
+  font-family: monospace;
+  font-size: 1.25em;
+}
+    </style>
+ 
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!-- Motocross image base64 -->
+<template>data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAXCAYAAAD+4+QTAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4xOdTWsmQAAALfSURBVEhLrVVLaBRBEN2NoqirB1Hw4MGD+ImHYNQQdme2IdMz09s9CfgZD56CQREPgmJAEFn1JniSIIIaPHjRg168CYoEQYwa/AYvXvwgRhEFxQ9ZfdXTO3F3Zpc1yYNH73ZVvaqu/kymGdrDcB6Nlls6ZHE5brtquNvzlmrjbMHmwT6IX4b4n5hc3YMpG3nMEMzrXQ3RqzUJIlaKjtho3KYP25UDWMHP+gSWq0a7hFgyKy2D4Gh9AiK1zrjMDIwFy9D3L7GwK9+AD6Pf6gXGY/m+vsXGfXqwuTwVJ+DyIiXFdLbgqq1I/gDzFV0EV2MFT3VEUf8JiDyPkshfYD9jLGdMGkzKFbC/jIpQdywhlhtT60BLbkRJ4nZ9xni8u3vHAuOSKXK5EwU8NvbTZrp1MBbm0KajCJ6oScbVXZj1/Sg6wRbbkQp+r7TNKwU03wxZ9HY3XTwE77IcKWw/6LSc0hokOog9ehYncuV+/L9Ge4IEk0j8w8zfpziscJvdE3SWy+U2oz0FIcR8xkubbU8eqQpqkpArP9bMNaBOxOUQHRa0coRaauRr4bruIuzJ7zSRRoToU4wVOiRGhpCtvnupQAvO1Qs1Y546gBaiuNebgmChkWmINuYF62xPddlu4GH5B1DdMIRQZXoC+Ewgjva0A/8rSHQFK7uE8bztlLaTTSsTir6y4aTPviZXnyxP7SUbEg3E8wnKm+RD7xk68C5h5+o67tncTMHv3YDlfks4gFQZ3eyEjcvvWMV7CA+ZQs4mfKrk8jD2oO57kWTULi6/IuEHCN7G6NPNpzaFYThH25Jxmij0CT0jU21KI849juP6Rt8QeixT46pEYfSMPEo1aspJ6rfRa4Qs/N6mxxPlCK3kRNIQ85YRagoIDabEatIrgLeK5VJXQyesR7QbnebAMwL/M4j757jTl1UOGo/4UTwJxzGM4zg1F5jvrzLmlpH3/bWI3QPxfibEymg2k/kLGmgFj+yZMV8AAAAASUVORK5CYII</template>
+<!-- partial -->
+  <script>
+    var c = document.createElement("canvas");
+var ctx = c.getContext("2d");
+c.width = 720;
+c.height = 480;
+document.body.appendChild(c);
+ 
+var perm = [];
+while (perm.length < 255){
+    while(perm.includes(val = Math.floor(Math.random()*255)));
+    perm.push(val);
+}
+ 
+var lerp = (a,b,t) => a + (b-a) * (1-Math.cos(t*Math.PI))/2;
+var noise = x=>{
+    x = x * 0.01 % 254;
+    return lerp(perm[Math.floor(x)], perm[Math.ceil(x)], x - Math.floor(x));
+}
+ 
+var Player =  function(){
+    this.x = c.width/2;
+    this.y = 0;
+    this.ySpeed = 0;
+    this.rot = 0;
+    this.rSpeed = 0;
+    this.img = new Image();
+    this.img.src = document.getElementsByTagName("template")[0].innerHTML;
+    this.draw = function(){
+        var p1 =  c.height - noise(t + this.x) * 0.25;
+        var p2 =  c.height - noise(t+5 + this.x) * 0.25;
+ 
+        var grounded = 0;
+        if(p1-12 > this.y){
+            this.ySpeed += 0.1;
+        }else{
+            this.ySpeed -= this.y - (p1-12);
+            this.y = p1 - 12;
+            grounded = 1;
+        }
+ 
+        var angle = Math.atan2((p2-12) - this.y, (this.x+5) - this.x);
+        this.y += this.ySpeed;
+ 
+        if(!playing || grounded && Math.abs(this.rot) > Math.PI * 0.5){
+            playing = false;
+            this.rSpeed = 5;
+            k.ArrowUp = 1;
+            this.x -= speed * 5;
+        }
+ 
+        
+        if(grounded && playing){
+            this.rot -= (this.rot - angle) * 0.65;
+            this.rSpeed = this.rSpeed - (angle - this.rot);
+        }
+        this.rSpeed += (k.ArrowLeft - k.ArrowRight) * 0.05;
+        this.rot -= this.rSpeed * 0.1;
+        if(this.rot > Math.PI) this.rot = -Math.PI;
+        if(this.rot < -Math.PI) this.rot = Math.PI;
+        ctx.save();
+        ctx.translate(this.x, this.y - 3);
+        ctx.rotate(this.rot);
+        ctx.drawImage(this.img, -15, -15, 30, 30);
+        ctx.restore();
+    }
+}
+ 
+var player = new Player();
+var t = 0;
+var speed = 0;
+var playing = true;
+var k = {ArrowUp:0, ArrowDown:0, ArrowLeft:0, ArrowRight:0};
+function loop(){
+    speed -= (speed - (k.ArrowUp - k.ArrowDown)) * 0.01;
+    t += 10 * speed;
+    ctx.fillStyle = "#19f";
+    ctx.fillRect(0,0,c.width, c.height);
+ 
+    ctx.fillStyle = "rgba(0,0,0,0.25)";
+    ctx.beginPath();
+    ctx.moveTo(0, c.height);
+    for (let i = 0; i < c.width; i++)
+        ctx.lineTo(i, c.height*0.8 - noise(t + i*5) * 0.25);
+    ctx.lineTo(c.width, c.height);
+    ctx.fill();
+ 
+    ctx.fillStyle = "#444";
+    ctx.beginPath();
+    ctx.moveTo(0, c.height);
+    for (let i = 0; i < c.width; i++)
+        ctx.lineTo(i, c.height - noise(t + i) * 0.25);
+    ctx.lineTo(c.width, c.height);
+    ctx.fill();
+ 
+    player.draw();
+    if(player.x < 0)
+        restart();
+    requestAnimationFrame(loop);
+}
+ 
+onkeydown = d=> k[d.key] = 1;
+onkeyup = d=> k[d.key] = 0;
+ 
+function restart(){
+    
+    player = new Player();
+    t = 0;
+    speed = 0;
+    playing = true;
+    k = {ArrowUp:0, ArrowDown:0, ArrowLeft:0, ArrowRight:0};
+ 
+}
+loop();
+ 
+var instructions = document.createElement("div");
+instructions.innerHTML += "[up] [down] = accelerate <br> [Left] [Rigth] = rotate";
+document.body.appendChild(instructions);
+    </script>
+ 
+</body>
+</html>
+
+
+ 
+
+ 
+
+And now if you open the index.html file inside the browser you will see the below screenshot
+
+ 
+
+ 
+
+
+
+ 
+
+FacebookTwitterEmailPinterestRedditLinkedInWhatsAppGmailShare
+Related posts:
+Build a Classic Hand Cricket Multiplayer Game in Browser Using HTML5 CSS3 and Javascript Full Project For Beginners
+
+Build a Rock Paper Scissors Hand Game With Live Scoreboard in Browser Using HTML5 CSS3 and Javascript Full Project For Beginners
+Build a Table Tennis Ping Pong Ball Game in Browser Using HTML5 CSS3 and Javascript Full Project For Beginners
+Build a Multiplayer Stick Fighting Game in Browser Using HTML5 CSS3 and Javascript Full Project For Beginners
+Build a (Tween.js + EaselJS) Multiplayer RPG Street Fighter Sprite Game in Browser Using HTML5 CSS3 and Javascript Full Project For Beginners
+Build a Multiplayer Air Hockey Board Game in Browser Using HTML5 CSS3 and Javascript Full Project For Beginners
+Build a Javascript International Telephone Country Dial Codes Dropdown with Flags Input in HTML5 and CSS3 Full Project For Beginners CSS3
+Build a Guess the Number Game in HTML5 CSS3 and Javascript Full Project For Beginners
+Build a Speed Typing Word TypeRacer Game in HTML5 CSS3 and Javascript Full Project For Beginners
+Build a Google Chrome T-Rex Dinosaur Running Game in HTML5 CSS3 and Javascript Full Project For Beginners
+Build a Word Scramble Solver Strategy Game in HTML5 CSS3 and Javascript Full Project For Beginners
+Build a Sudoku Board Solver Puzzle Game in HTML5 CSS3 and Javascript Full Project For Beginners
+Build a Phaser Box2d Plugin Game Framework 2D Platform Car Racing Track Game in Browser Using Javascript Full Project For Beginners
+Build a Password Manager UI/UX Design Full Web App in Browser Using HTML5 CSS3 and Javascript Full Project For Beginners
+Build a WordPress Wysiwyg Rich HTML Text Editor in Browser Using HTML5 CSS3 and Javascript Full Project For Beginners
+Build a Countdown Digital Alarm Clock Timer in Browser Using HTML5 CSS3 and Javascript Full Project For Beginners
+Build a JSON Formatter or Beautifier in Browser Using HTML5 CSS3 and Javascript Full Project For Beginners
+Build a Coronavirus COVID-19 Live World Tracker Web App in Browser Using HTML5 CSS3 and Javascript Full Project For Beginners
+Build a Live Coronavirus Covid-19 World Map Cases Tracker Animation in Browser Using HTML5 CSS3 and Javascript Full Project For Beginners
+Build a 2D Paint Drawing Pad Canvas Web App in Browser Using HTML5 CSS3 and Javascript Full Project For Beginners
+Ezoicreport this ad
+YOU MIGHT ALSO LIKE
+Build a Omegle WebRTC Clone Group Chat With File or Images Transfer in Socket.io Using Node.js & Express in Javascript Full Project For Beginners
+December 1, 2021
+Build a PDF.js and Bootstrap 4 PDF Document Viewer With Page Numbering in Javascript Full Project For Beginners
+June 28, 2021
+Node.js Project to Get All Countries,States & Cities List in World in Command Line Using country-state-city Library Full Project For Beginners
+December 9, 2021
+Leave a Reply
+Comment
+Your comment here...
+Enter your name or username to comment
+Name (required)
+Enter your email address to comment
+Email (required)
+Enter your website URL (optional)
+Website
+ Save my name, email, and website in this browser for the next time I comment.
+About Me
+About Me
+GAUTAM SHARMA
+Youtuber & Blogger My Hangout id: geekygautam1997@gmail.com My Whatsapp : +919821254649 Coding Shiksha Whatsapp Group: https://chat.whatsapp.com/JTuY1zr9IezE97zOqsqeiB Coding Shiksha Telegram Group: https://t.me/+G69g2oJJrPUJ8xiC
+Opens in a new tabOpens in a new tab
+Coding Shiksha - Programming Tutorials & Website Traffic Live
+Domain Age Checker – My Android App ( Please Install And Rate It)
+
+Recent Posts
+jsPDF-Autotable Project to Generate PDF Document Payment Invoice With Custom HTML5 CSS3 Template in Browser Using Javascript Full Project For Beginners
+APRIL 22, 2022/0 COMMENTS
+Node.js jspdf-invoice-template Project to Generate PDF Document Invoice Generator in Browser Using Javascript Full Project For Beginners
+APRIL 22, 2022/0 COMMENTS
+PDFMake.js Example to Insert Dollars($),₹ Rupee,Euro(€),Pound(£),Japanese Yen(¥) Currency Sign in PDF Document in Browser Using Javascript Full Project For Beginners
+APRIL 22, 2022/0 COMMENTS
+PHP 7 Script to Fetch Data From Oracle Database inside Server and Display it in Browser
+APRIL 22, 2022/0 COMMENTS
+PHP 7 FPDF iconv() Script to Insert Dollars($),₹ Rupee,Euro(€),Pound(£),Japanese Yen(¥) Currency Sign in PDF Document in Browser Using Javascript Full Project For Beginners
+APRIL 20, 2022/0 COMMENTS
+Search this website
+Search
+
+Ezoicreport this ad
+Sticky Ad
+
+Ezoicreport this ad
+Category Post
+Sorry, no posts were found.
+
+Ezoicreport this ad
+[mc4wp_form id="7090"]
+Recent Posts
+jsPDF-Autotable Project to Generate PDF Document Payment Invoice With Custom HTML5 CSS3 Template in Browser Using Javascript Full Project For Beginners
+Node.js jspdf-invoice-template Project to Generate PDF Document Invoice Generator in Browser Using Javascript Full Project For Beginners
+PDFMake.js Example to Insert Dollars($),₹ Rupee,Euro(€),Pound(£),Japanese Yen(¥) Currency Sign in PDF Document in Browser Using Javascript Full Project For Beginners
+PHP 7 Script to Fetch Data From Oracle Database inside Server and Display it in Browser
+Categories
+Android
+Angular
+animals
+c#
+c++
+Deno
+django
+flask
+Go
+ionic
+Java
+javascript
+Kotlin
+perl
+PHP
+Python
+React
+Ruby
+SEO
+svelte
+Tutorials
+Uncategorized
+Vue
+Web Development
+Recent Popular Post
+
+x
+x
+
+
+
+✕
+Subscribe to receive push notifications on latest updates
+
+SUBSCRIBE
+⚡by
+ Webpushr
